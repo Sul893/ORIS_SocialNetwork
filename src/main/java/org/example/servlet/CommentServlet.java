@@ -14,10 +14,15 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/comments")
+
 public class CommentServlet extends HttpServlet {
-    private ICommentService commentService = new CommentServiceImpl();
-    private IPostService postService = new PostServiceImpl();
+    private ICommentService commentService;
+    private IPostService postService;
+
+    public CommentServlet(IPostService postService, ICommentService commentService) {
+        this.postService = postService;
+        this.commentService = commentService;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

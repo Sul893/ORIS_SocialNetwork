@@ -15,11 +15,18 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/profile")
+
 public class ProfileServlet extends HttpServlet {
-    private IUserService userService = new UserServiceImpl();
-    private IPostService postService = new PostServiceImpl();
-    private IFollowService followService = new FollowServiceImpl();
+    private IUserService userService;
+    private IPostService postService;
+    private IFollowService followService;
+
+    public ProfileServlet(IUserService userService, IPostService postService, IFollowService followService) {
+        this.userService = userService;
+        this.postService = postService;
+        this.followService = followService;
+    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

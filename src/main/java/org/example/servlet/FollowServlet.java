@@ -11,10 +11,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/follow")
+
 public class FollowServlet extends HttpServlet {
-    private IFollowService followService = new FollowServiceImpl();
-    private IUserService userService = new UserServiceImpl();
+    private IFollowService followService;
+    private IUserService userService;
+
+    public FollowServlet(IFollowService followService, IUserService userService){
+        this.followService = followService;
+        this.userService = userService;
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -7,7 +7,10 @@ import org.example.util.HashUtil;
 import org.example.util.Validator;
 
 public class UserServiceImpl implements IUserService {
-    private UserDAO userDAO = new UserDAO();
+    private UserDAO userDAO;
+    public UserServiceImpl(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     @Override
     public void register(User user) throws Exception {
@@ -48,4 +51,5 @@ public class UserServiceImpl implements IUserService {
     public User getByTagname(String tagname) throws Exception {
         return userDAO.getByTagname(tagname);
     }
+
 }

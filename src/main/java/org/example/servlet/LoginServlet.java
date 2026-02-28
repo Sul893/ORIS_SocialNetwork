@@ -9,9 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/login")
+
 public class LoginServlet extends HttpServlet {
-    private IUserService userService = new UserServiceImpl();
+    private IUserService userService;
+
+    public LoginServlet(IUserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

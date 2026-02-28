@@ -8,7 +8,11 @@ import org.example.util.Validator;
 import java.util.List;
 
 public class CommentServiceImpl implements ICommentService {
-    private CommentDAO commentDAO = new CommentDAO();
+    private CommentDAO commentDAO;
+
+    public CommentServiceImpl(CommentDAO commentDAO) {
+        this.commentDAO = commentDAO;
+    }
 
     @Override
     public void addComment(Comment comment) throws Exception {

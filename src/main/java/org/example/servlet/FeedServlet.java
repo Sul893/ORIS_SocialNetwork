@@ -11,9 +11,13 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/feed")
+
 public class FeedServlet extends HttpServlet {
-    private IPostService postService = new PostServiceImpl();
+    private IPostService postService;
+
+    public FeedServlet(IPostService postService) {
+        this.postService = postService;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

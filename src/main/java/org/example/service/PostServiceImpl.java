@@ -5,12 +5,20 @@ import org.example.dao.PostDAO;
 import org.example.model.Post;
 import org.example.service.IPostService;
 import org.example.util.Validator;
+import java.util.Set;
+import java.util.HashSet;
+
 
 import java.util.List;
 
 public class PostServiceImpl implements IPostService {
-    private PostDAO postDAO = new PostDAO();
-    private FollowDAO followDAO = new FollowDAO();
+    private PostDAO postDAO;
+    private FollowDAO followDAO;
+
+    public PostServiceImpl(PostDAO postDAO, FollowDAO followDAO) {
+        this.postDAO = postDAO;
+        this.followDAO = followDAO;
+    }
 
     @Override
     public void createPost(Post post) throws Exception {
@@ -28,12 +36,23 @@ public class PostServiceImpl implements IPostService {
     @Override
     public List<Post> getFeed(int currentUserId) throws Exception {
         List<Integer> followingIds = followDAO.getFollowingIds(currentUserId);
+        Set<Integer> loadedIds = new HashSet<>();
         List<Post> posts;
 
         if (followingIds.isEmpty()) {
             posts = postDAO.getAllPosts();
         } else {
             posts = postDAO.getPostsByUserIds(followingIds);
+
+            for (Post p : posts) {
+                loadedIds.add(p.getId());
+            }
+            List<Post> allPosts = postDAO.getAllPosts();
+            for (Post p : allPosts) {
+                if (!loadedIds.contains(p.getId())) {
+                    posts.add(p);
+                }
+            }
         }
 
         for (Post p : posts) {

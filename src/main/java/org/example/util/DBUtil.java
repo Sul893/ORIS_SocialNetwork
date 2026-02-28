@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DBUtil {
 
-    private static final String URL = "&";
-    private static final String USER = "&";
-    private static final String PASS = "&";
+    private static final String URL = "jdbc:postgresql://localhost:5432/dopsem";
+    private static final String USER = "postgres";
+    private static final String PASS = "20170927s";
 
     static {
         try {

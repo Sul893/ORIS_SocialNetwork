@@ -4,7 +4,11 @@ import org.example.dao.FollowDAO;
 import org.example.service.IFollowService;
 
 public class FollowServiceImpl implements IFollowService {
-    private FollowDAO followDAO = new FollowDAO();
+    private FollowDAO followDAO;
+
+    public FollowServiceImpl(FollowDAO followDAO){
+        this.followDAO=followDAO;
+    }
 
     @Override
     public void follow(int followerId, int followingId) throws Exception {

@@ -12,6 +12,8 @@
             <div style="display:flex; justify-content:space-between; width: 100%;">
                 <h2 style="margin:0;">@${profileUser.tagname}</h2>
                 <a href="logout" style="color: #333;">Выход</a>
+
+                <a href="feed" style="color: #333;">Лента</a>
             </div>
         </div>
 

@@ -9,9 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/like")
+
 public class LikeServlet extends HttpServlet {
-    private IPostService postService = new PostServiceImpl();
+    private IPostService postService;
+
+    public LikeServlet(IPostService postService) {
+        this.postService = postService;
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
